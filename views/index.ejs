@@ -8,17 +8,36 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <ul>
+    
+        <div class="box" id="heading">
+           <h1> <%= titlek %> </h1> 
+          </div>
         
-        <% list.forEach((item)=>{ %>
-           <li><%= item %></li>
-        <% }) %>
-    </ul>
+          <div class="box">
+             
+                <% list.forEach((item)=>{ %>
+                    <div class="item">
+                    <input type="checkbox" name="" id="">
+                   <p ><%= item %></p>
+                    </div>
+                <% }) %>
+             
+                <form action="/" method="POST">
+                    <input type="text" name="newTask" placeholder="Enter the task">
+                    
+                    <button type="submit" name='btn' value= <%= titlek %> > +
+                    </button>
+                </form>
+            </div>
+      
 
-    <form action="/" method="POST">
-        <input type="text" name="newTask" placeholder="Enter the task">
-        <input type="submit" value="submit">
-    </form>
+  
 
+    
+
+
+    <footer>
+        copyright &copy Hari Prasath
+    </footer>
 </body>
 </html>
