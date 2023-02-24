@@ -1,21 +1,39 @@
-let express = require('express');
-let bodyParser = require('body-parser');
+const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+
 let app = express();
 
-const itemList = ['Bootcamp', 'Digital Marketing']
-const workList =['work','work']
-let listTitle=''
 
 app.use(bodyParser.urlencoded({ extended:"true"}));
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'))
 
+
+mongoose.set('strictQuery',true)
+mongoose.connect("mongodb://localhost:27017/todoDb")
+
+const todoSchema = new mongoose.Schema({
+    name: String,
+})
+
+const List = mongoose.model('item',todoSchema);
+
+const item1 = new List({
+    name:'Wann a add to a database'});
+const item2 = new List({
+    name:'Hello all'});
+
+const defaultList = [item1, item2]
+
+// 
+
 app.get('/', (req, res) => {
 
       listTitle ='Home'
     res.render('index', {
-        titlek:listTitle,
+        titlek:'Home',
         list: itemList
     });
 });
